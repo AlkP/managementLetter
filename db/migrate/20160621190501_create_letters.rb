@@ -11,6 +11,7 @@ class CreateLetters < ActiveRecord::Migration
       t.string  :after_mail     # 1 - досылка почты не будет, 2 - будет выслан бумажный вариант
       t.string  :required_answer
       # 1 - ответ не требуется, 2 - требуется ответ в электронном виде, 3 - требуется ответ за подписью руководителя
+      t.string  :parent         # "родитель" сообщения, для ответа - id письма из ЦБ
       t.string  :state          # 99 - заблокировать письмо на изменение
 
       t.timestamps null: false
