@@ -1,0 +1,2 @@
+class TypeLettersController < ApplicationController
+end

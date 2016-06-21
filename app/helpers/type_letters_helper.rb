@@ -1,0 +1,2 @@
+module TypeLettersHelper
+end
