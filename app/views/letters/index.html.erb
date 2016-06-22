@@ -1,0 +1,33 @@
+<%= link_to('Новое письмо', new_letter_path, :class => 'btn btn-primary btn-block btn-lg')  %>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="title">Тип письма</th>
+    <th class="title">Номер</th>
+    <th class="title">Дата письма</th>
+    <th class="title">Email</th>
+    <th class="title">Краткое содержание</th>
+    <th class="title"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @letters.each do |f| %>
+      <tr>
+        <td><%= f.type_letter.name %></td>
+        <td><%= link_to( f.number1+" / "+f.number2, edit_letter_url(f)) %></td>
+        <td><%= f.date_letter %></td>
+        <td class="data"><%= link_to( f.cb_mail.email, edit_letter_url(f)) %></td>
+        <td class="data"><%= link_to( f.summary, edit_letter_url(f))  %></td>
+        <td class="data">
+          <% if f.letter_id.nil? %>
+            nil
+          <% else %>
+            <%= f.letter_id %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>

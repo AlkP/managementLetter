@@ -8,7 +8,35 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <%= render 'layouts/menu' %>
+
+        <!--
+        <div class="error">
+          < % if @article.errors.any? %>
+            <div id="error_explanation">
+              <h2>
+                < %= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:
+              </h2>
+              <ul>
+                < % @article.errors.full_messages.each do |msg| %>
+                  <li>< %= msg %></li>
+                < % end %>
+              </ul>
+            </div>
+          < % end %>
+        </div>
+        -->
+
+      </div>
+
+      <div class="col-md-12">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

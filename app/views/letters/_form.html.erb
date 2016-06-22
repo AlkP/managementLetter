@@ -1,0 +1,59 @@
+
+<%= form_for @letter do |f| %>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr class="success">
+        <td class="title">Тип письма</td>
+        <td class="data">
+          <%= select_tag( 'letter[type_letter_id]', options_from_collection_for_select(@typeLetter, :id, :name, @letter.type_letter_id ), include_blank: false ) %>
+        </td>
+      </tr>
+      <tr class="success">
+        <td class="title">Ящик для ответа/для письма</td>
+        <td class="data">
+          <%= select_tag( 'letter[cb_mail_id]', options_from_collection_for_select(@cbMail, :id, :email, @letter.cb_mail_id ), include_blank: true ) %>
+        </td>
+      </tr>
+      <tr class="success">
+        <td class="title">Дата письма</td>
+        <td class="data">
+          <%= f.date_field :date_letter %>
+        </td>
+      </tr>
+      <tr class="success">
+        <td class="title">Номер письма</td>
+        <td class="data">
+          <%= f.text_field :number1, size: 9 %> / <%= f.text_field :number2, size: 4 %>
+        </td>
+      </tr>
+      <tr class="success">
+        <td class="title">Краткое содержание</td>
+        <td class="data">
+          <%= f.text_area :summary, cols: 50, rows: 6 %>
+        </td>
+      </tr>
+      <tr class="success">
+        <td class="title">Досылка бумажного экземпляра</td>
+        <td class="data">
+          <%= select_tag('letter[after_mail]', options_for_select([["" , "0" ],
+                                                                   ["досылка бумажного не будет" , "1" ],
+                                                                   ["будет выслан бумажный вариант" , "2" ]],
+                                                                  @letter.after_mail) )%>
+        </td>
+      </tr>
+      <tr class="success">
+        <td class="title">Требуется ли ответ</td>
+        <td class="data">
+          <%= select_tag('letter[required_answer]', options_for_select([["ответ не требуется" , "1" ],
+                                                                        ["требуется ответ в электронном виде" , "2" ],
+                                                                        ["требуется ответ за подписью руководителя","3"]],
+                                                                       @letter.required_answer) )%>
+        </td>
+      </tr>
+    </table>
+    <div class="modal-footer">
+      <%= f.submit 'Сохранить', :class => 'btn btn-primary btn-block btn-lg' %>
+    </div>
+  </div>
+<%end%>
+

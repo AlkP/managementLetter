@@ -1,0 +1,21 @@
+<%= link_to('Новый ящик', new_cb_mail_path, :class => 'btn btn-primary btn-block btn-lg')  %>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="title">email</th>
+    <th class="title">Путь к папке</th>
+    <th class="title">Примечание</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @cbMails.each do |f| %>
+    <tr>
+      <td class="data"><%= link_to(f.email,edit_cb_mail_url(f)) %></td>
+      <td class="data"><%= f.path_to_out  %></td>
+      <td class="data"><%= f.description %></td>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>

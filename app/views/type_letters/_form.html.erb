@@ -1,0 +1,30 @@
+
+<%= form_for @typeLetter do |f| %>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr class="warning">
+        <td class="title">Направление письма</td>
+        <td class="data">
+          <%= select_tag('type_letter[direction]', options_for_select([["Входящий" , "1" ],
+                                                             ["Исходящий" , "2" ]], @typeLetter.direction) )%>
+        </td>
+      </tr>
+      <tr class="success">
+        <td class="title">Сервисный номер</td>
+        <td class="data">
+          <%= f.number_field :service_number %>
+        </td>
+      </tr>
+      <tr class="success">
+        <td class="title">Имя</td>
+        <td class="data">
+          <%= f.text_field :name %>
+        </td>
+      </tr>
+    </table>
+    <div class="modal-footer">
+      <%= f.submit 'Сохранить', :class => 'btn btn-primary btn-block btn-lg' %>
+    </div>
+  </div>
+<%end%>
+
