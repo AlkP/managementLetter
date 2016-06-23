@@ -3,6 +3,7 @@ class Letter < ActiveRecord::Base
   belongs_to :type_letter
   belongs_to :cb_mail
   belongs_to :letter
+  has_many :attached
 
   #scope :all(option=nil), -> { options ? where(type_letters: ) }
 

@@ -1,7 +1,24 @@
-<%= link_to('Назад', letters_path, :class => 'btn btn-primary btn-block btn-lg')  %>
+<%= link_to('Назад к списку писем', letters_path, :class => 'btn btn-primary btn-lg')  %>
+
 
 <div class="modal-header">
   <h1>Редактируем письмо</h1>
 </div>
 
-<%= render 'form' %>
+<table class="table">
+  <tr>
+    <th class="title"><%= render 'form' %></th>
+    <th class="title"><%= render 'form_attacheds' %></th>
+    <th class="title">
+      <% unless @attacheds.first.nil? %>
+        <% unless @letter.state == 88 %>
+          <a class="btn btn-success btn-block btn-lg" data-confirm="Действительно отправить пиьмо?" data-method="get" href="<%= letter_url %>">Отправить адресату</a>
+        <% else %>
+          <h3>Письмо отправлено</h3>
+        <% end %>
+      <% end %>
+    </th>
+  </tr>
+</table>
+
+

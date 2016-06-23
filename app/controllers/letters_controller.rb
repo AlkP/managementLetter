@@ -8,28 +8,39 @@ class LettersController < ApplicationController
     @cbMail = CbMail.all
     @letter.date_letter = Time.now
   end
+  def create
+    letter = Letter.new(letter_params)
+    if letter.save
+      redirect_to edit_letter_url(letter)
+    else
+      @letter = Letter.find(params[:id])
+      render "new"
+    end
+  end
   def edit
     @letter = Letter.find(params[:id])
     @typeLetter = TypeLetter.all
     @cbMail = CbMail.all
+    @attacheds = Attached.where('letter_id = ?',params[:id])
   end
   def update
     letter = Letter.find(params[:id])
     if letter.update(letter_params)
-      redirect_to letters_path
+      redirect_to edit_letter_url(letter)
     else
       @letter = Letter.find(params[:id])
       render "edit"
     end
   end
-  def create
-    letter = Letter.new(letter_params)
-    if letter.save
-      redirect_to letters_path
-    else
-      @letter = Letter.find(params[:id])
-      render "new"
+  def show
+    letter = Letter.find(params[:id])
+    attacheds = Attached.where('letter_id = ?', letter.id)
+    attacheds.each do |f|
+      FileUtils.copy f.attached.path, '/home/alkp/Documents/35svc_svkkey/'
     end
+    letter.state = 88
+    letter.save
+    redirect_to edit_letter_url(letter)
   end
   private
   def letter_params

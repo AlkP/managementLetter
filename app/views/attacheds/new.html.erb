@@ -1,0 +1,22 @@
+<%= link_to('Назад', edit_letter_url(@attached.letter_id), :class => 'btn btn-primary btn-block btn-lg')  %>
+<%= form_for @attached do |f| %>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr class="success">
+        <td class="title">ID письма</td>
+        <td class="data">
+          <%= f.text_field :letter_id, :disabled =>"disabled" %>
+        </td>
+      </tr>
+      <tr class="success">
+        <td class="title">Файл</td>
+        <td class="data">
+          <%= f.file_field :attached %>
+        </td>
+      </tr>
+    </table>
+    <div class="modal-footer">
+      <%= f.submit 'Сохранить', :class => 'btn btn-primary btn-block btn-lg' %>
+    </div>
+  </div>
+<%end%>

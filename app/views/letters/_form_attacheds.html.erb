@@ -1,0 +1,24 @@
+
+<div class="modal-header">
+  <h2>Вложения письма</h2>
+</div>
+
+<% unless @attacheds.nil? %>
+  <table class="table">
+    <tbody>
+    <% @attacheds.each do |f| %>
+      <tr>
+        <td><%= f.attached.original_filename %></td>
+        <% unless @letter.state == 88 %>
+          <td><a data-confirm="Действительно удалить вложение?" data-method="delete" href="<%= attached_url(f) %>">Удалить</a></td>
+        <% end %>
+      </tr>
+    <% end %>
+
+    </tbody>
+  </table>
+<% end %>
+
+<% unless @letter.state == 88 %>
+  <%= link_to('Добавить вложение', new_attached_path(@letter), :class => 'btn btn-info btn-block btn-lg')  %>
+<% end %>

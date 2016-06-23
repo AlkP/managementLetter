@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :type_letters
     resources :letters
   end
+  resources :attacheds do
+    resources :letters
+  end
 
   root 'letters#index'
 end
