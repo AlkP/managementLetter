@@ -11,7 +11,7 @@
   <tbody>
   <% @typeLetters.each do |f| %>
     <tr>
-      <td class="data"><% if f.direction=='1' %>Входящий<% elsif f.direction=='2' %>Исходящий<% end %></td>
+      <td class="data"><% if f.direction == 1 %>Входящий<% elsif f.direction == 2 %>Исходящий<% end %></td>
       <td class="data"><%= f.service_number  %></td>
       <td class="data"><%= link_to(f.name, edit_type_letter_url(f)) %></td>
     </tr>

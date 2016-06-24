@@ -16,7 +16,7 @@
   <tbody>
   <% @letters.each do |f| %>
       <tr>
-        <td><% if f.type_letter.direction == "1" %><img alt="in" src="/assets/in.png" /><% else %><img alt="out" src="/assets/out.png" /><% end %></td>
+        <td><% if f.type_letter.direction == 1 %><img alt="in" src="/assets/in.png" /><% else %><img alt="out" src="/assets/out.png" /><% end %></td>
         <td><%= f.type_letter.name %></td>
         <td><%= link_to( f.number1+" / "+f.number2, edit_letter_url(f)) %></td>
         <td><%= f.date_letter %></td>

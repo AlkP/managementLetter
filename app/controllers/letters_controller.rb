@@ -31,7 +31,7 @@ class LettersController < ApplicationController
     # @direction = @letter.type_letter.direction.to_s
     @parent = Letter.find_by_letter_id(@letter.id)
     @answer = @parent.nil?
-    if @letter.type_letter.direction == "2"
+    if @letter.type_letter.direction == 2 or @letter.required_answer == 1
       @answer = false
     end
     @typeLetters = TypeLetter.where('direction = ?', @letter.type_letter.direction)

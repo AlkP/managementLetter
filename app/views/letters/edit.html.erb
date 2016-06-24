@@ -2,7 +2,7 @@
 <% if @answer %><%= link_to('Сформировать ответ', new_letter_path(@letter), :class => 'btn btn-danger btn-lg')  %><% end %>
 
 <div class="modal-header">
-  <h1><% if @typeLetters.first.direction == "1" %>Редактируем вх. письмо<% unless @parent.nil? %>. На него есть сформированный <%= link_to('ответ', edit_letter_url(@parent)) %><% end %><% elsif @letter.letter_id.nil? %>Редактируем  исх. письмо<% else %>Редактируем ответ на <%= link_to('письмо', edit_letter_url(@letter.letter_id)) %><% end %></h1>
+  <h1><% if @typeLetters.first.direction == 1 %>Редактируем вх. письмо<% unless @parent.nil? %>. На него есть сформированный <%= link_to('ответ', edit_letter_url(@parent)) %><% end %><% elsif @letter.letter_id.nil? %>Редактируем  исх. письмо<% else %>Редактируем ответ на <%= link_to('письмо', edit_letter_url(@letter.letter_id)) %><% end %></h1>
 </div>
 
 <table class="table">

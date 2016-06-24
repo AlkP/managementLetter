@@ -14,7 +14,7 @@
         </td>
       </tr>
       <tr class="success" <% unless @letter.letter_id.nil? %>hidden="true"<% end %>>
-        <td class="title"><% if @typeLetters.first.direction == "1" %>email для ответа<% else %>email письма<% end %></td>
+        <td class="title"><% if @typeLetters.first.direction == 1 %>email для ответа<% else %>email письма<% end %></td>
         <td class="data">
           <%= select_tag( 'letter[cb_mail_id]', options_from_collection_for_select(@cbMail, :id, :email, @letter.cb_mail_id ), include_blank: true ) %>
         </td>
@@ -37,10 +37,10 @@
           <%= f.text_area :summary, cols: 50, rows: 6 %>
         </td>
       </tr>
-      <tr class="success" <% if @typeLetters.first.direction == "2" or !@letter.letter_id.nil? %>hidden="true"<% end %>>
+      <tr class="success" <% if @typeLetters.first.direction == 2 or !@letter.letter_id.nil? %>hidden="true"<% end %>>
         <td class="title">Досылка бумажного экземпляра</td>
         <td class="data">
-          <% if @typeLetters.first.direction == "1" and action_name = "new" %>
+          <% if @typeLetters.first.direction == 1 and action_name = "new" %>
             <%= select_tag('letter[after_mail]', options_for_select([["" , "0" ],
                                                                      ["досылка бумажного не будет" , "1" ],
                                                                      ["будет выслан бумажный вариант" , "2" ]],
@@ -53,7 +53,7 @@
           <% end %>
         </td>
       </tr>
-      <tr class="success" <% if @typeLetters.first.direction == "2" or !@letter.letter_id.nil? %>hidden="true"<% end %>>
+      <tr class="success" <% if @typeLetters.first.direction == 2 or !@letter.letter_id.nil? %>hidden="true"<% end %>>
         <td class="title">Требуется ли ответ</td>
         <td class="data">
           <%= select_tag('letter[required_answer]', options_for_select([["ответ не требуется" , "1" ],
