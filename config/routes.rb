@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :letters
   end
   resources :attacheds do
-    resources :letters
+    resources :letters do
+      resources :cb_mails
+    end
   end
 
   root 'letters#index'

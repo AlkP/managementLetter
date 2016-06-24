@@ -1,7 +1,6 @@
 <%= link_to('Назад', letters_path, :class => 'btn btn-primary btn-block btn-lg')  %>
 
 <div class="modal-header">
-  <h1>Новое письмо</h1>
+  <h1><% if @typeLetters.first.direction == "1" %>Новое вх. письмо<% elsif @letter.letter_id.nil? %>Новое исх. письмо<% else %>Новый ответ<% end %></h1>
 </div>
-
 <%= render 'form' %>

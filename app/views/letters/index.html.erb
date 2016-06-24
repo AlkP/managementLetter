@@ -1,8 +1,10 @@
-<%= link_to('Новое письмо', new_letter_path, :class => 'btn btn-primary btn-lg')  %>
+<%= link_to('Оформить вх. письмо', new_letter_path(1), :class => 'btn btn-primary btn-lg')  %>
+<%= link_to('Оформить исх. письмо', new_letter_path(2), :class => 'btn btn-primary btn-lg')  %>
 
 <table class="table">
   <thead>
   <tr>
+    <th class="title"></th>
     <th class="title">Тип письма</th>
     <th class="title">Номер</th>
     <th class="title">Дата письма</th>
@@ -14,17 +16,14 @@
   <tbody>
   <% @letters.each do |f| %>
       <tr>
+        <td><% if f.type_letter.direction == "1" %><img alt="in" src="/assets/in.png" /><% else %><img alt="out" src="/assets/out.png" /><% end %></td>
         <td><%= f.type_letter.name %></td>
         <td><%= link_to( f.number1+" / "+f.number2, edit_letter_url(f)) %></td>
         <td><%= f.date_letter %></td>
-        <td class="data"><%= link_to( f.cb_mail.email, edit_letter_url(f)) %></td>
+        <td class="data"><% unless f.cb_mail.nil? %><%= link_to( f.cb_mail.email, edit_letter_url(f)) %><% end %></td>
         <td class="data"><%= link_to( f.summary, edit_letter_url(f))  %></td>
         <td class="data">
-          <% if f.letter_id.nil? %>
-            nil
-          <% else %>
-            <%= f.letter_id %>
-          <% end %>
+          <a data-confirm="Вы действительно хотите удалить письмо?" data-method="delete" href="<%= letter_url(f) %>" rel="nofollow">удалить</a>
         </td>
       </tr>
   <% end %>

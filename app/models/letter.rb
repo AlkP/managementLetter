@@ -1,5 +1,6 @@
 class Letter < ActiveRecord::Base
-  has_many :letter, dependent: :restrict_with_exception
+  # has_many :letter, dependent: :restrict_with_exception
+  has_many :letter
   belongs_to :type_letter
   belongs_to :cb_mail
   belongs_to :letter
