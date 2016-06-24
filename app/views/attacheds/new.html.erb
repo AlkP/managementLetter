@@ -2,10 +2,10 @@
 <%= form_for @attached do |f| %>
   <div class="modal-body">
     <table class="table table-striped">
-      <tr class="success">
+      <tr class="success" hidden="true">
         <td class="title">ID письма</td>
         <td class="data">
-          <%= f.text_field :letter_id, :disabled =>"disabled" %>
+          <%= f.text_field :letter_id %>
         </td>
       </tr>
       <tr class="success">
