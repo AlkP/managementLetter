@@ -49,12 +49,13 @@ class LettersController < ApplicationController
   end
   def show
     letter = Letter.find(params[:id])
-    attacheds = Attached.where('letter_id = ?', letter.id)
-    attacheds.each do |f|
-      FileUtils.copy f.attached.path, f.letter.cb_mail.path_to_out
-    end
-    letter.state = 88
+    # attacheds = Attached.where('letter_id = ?', letter.id)
+    # attacheds.each do |f|
+    #   FileUtils.copy f.attached.path, f.letter.cb_mail.path_to_out
+    # end
+    # letter.state = 88
     # letter.save
+    LetterMailer.incoming_letter.deliver_now
     redirect_to edit_letter_url(letter)
   end
   def destroy
