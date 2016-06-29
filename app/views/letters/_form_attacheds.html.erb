@@ -9,8 +9,10 @@
     <% @attacheds.each do |f| %>
       <tr>
         <td><%= f.attached.original_filename %></td>
-        <% unless @letter.state == 88 %>
+        <% unless @letter.state == 88 or action_name == "show" %>
           <td><a data-confirm="Действительно удалить вложение?" data-method="delete" href="<%= attached_url(f) %>">Удалить</a></td>
+        <% else %>
+          <td><%= link_to("Просмотр", f.attached.url) %></td>
         <% end %>
       </tr>
     <% end %>
@@ -19,6 +21,6 @@
   </table>
 <% end %>
 
-<% unless @letter.state == 88 %>
+<% unless @letter.state == 88 or action_name == "show" %>
   <%= link_to('Добавить вложение', new_attached_path(@letter), :class => 'btn btn-info btn-block btn-lg')  %>
 <% end %>

@@ -1,0 +1,23 @@
+<%= link_to('Новый получатель уведомления о вх. сообщении', new_recipient_path, :class => 'btn btn-primary btn-lg')  %>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="title"></th>
+    <th class="title">Имя</th>
+    <th class="title">email</th>
+    <th class="title"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @recipients.each do |f| %>
+      <tr>
+        <td><% if f.email_enabled %><img alt="in" src="/assets/in.png" /><% else %><img alt="out" src="/assets/out.png" /><% end %></td>
+        <td><%= link_to(f.name, edit_recipient_url(f)) %></td>
+        <td><%= f.email %></td>
+        <td class="data"><a data-confirm="Вы действительно хотите удалить получателя?" data-method="delete" href="<%= recipient_url(f) %>" rel="nofollow">удалить</a></td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>

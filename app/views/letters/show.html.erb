@@ -1,0 +1,12 @@
+<%= link_to('Назад к списку писем', letters_path, :class => 'btn btn-primary btn-lg')  %>
+
+<div class="modal-header">
+  <h1><% if @typeLetters.first.direction == 1 %>Просмотр вх. письмо<% unless @parent.nil? %>. На него есть сформированный <%= link_to('ответ', letter_url(@parent)) %><% end %><% elsif @letter.letter_id.nil? %>Смотрим  исх. письмо<% else %>Смотрим ответ на <%= link_to('письмо', letter_url(@letter.letter_id)) %><% end %></h1>
+</div>
+
+<table class="table">
+  <tr>
+    <th class="title"><%= render 'form' %></th>
+    <th class="title"><%= render 'form_attacheds' %></th>
+  </tr>
+</table>

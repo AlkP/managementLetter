@@ -14,9 +14,9 @@ TypeLetter.create(direction: "2", service_number: "51", name: "Письмо в �
 TypeLetter.create(direction: "2", service_number: "52", name: "Ответ на письмо ЦБ" );
 TypeLetter.create(direction: "2", service_number: "58", name: "Курсы" );
 
-CbMail.create(email: "35svc_svkkey");
-CbMail.create(email: "35svc_svkobn");
-CbMail.create(email: "35svc_svkopsr");
-CbMail.create(email: "35svc_svksimferopol");
-CbMail.create(email: "35svc_svkspo");
-CbMail.create(email: "35svc_svkval");
+CbMail.create(email: "35svc_svkkey@ext-gate.svk.krym.cbr.ru", path_to_out: "/home/alkp/post/35svc_svkkey");
+CbMail.create(email: "35svc_svkobn@ext-gate.svk.krym.cbr.ru", path_to_out: "/home/alkp/post/35svc_svkobn");
+CbMail.create(email: "35svc_svkopsr@ext-gate.svk.krym.cbr.ru", path_to_out: "/home/alkp/post/35svc_svkopsr");
+CbMail.create(email: "35svc_svksimferopol@ext-gate.svk.krym.cbr.ru", path_to_out: "/home/alkp/post/35svc_svksimferopol");
+CbMail.create(email: "35svc_svkspo@ext-gate.svk.krym.cbr.ru", path_to_out: "/home/alkp/post/35svc_svkspo");
+CbMail.create(email: "35svc_svkval@ext-gate.svk.krym.cbr.ru", path_to_out: "/home/alkp/post/35svc_svkval");

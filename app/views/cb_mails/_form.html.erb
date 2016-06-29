@@ -5,19 +5,19 @@
       <tr class="success">
         <td class="title">Ящик</td>
         <td class="data">
-          <%= f.email_field :email %>
+          <%= f.email_field :email, size: 55 %>
         </td>
       </tr>
       <tr class="success">
         <td class="title">Путь</td>
         <td class="data">
-          <%= f.text_field :path_to_out %>
+          <%= f.text_field :path_to_out, size: 55 %>
         </td>
       </tr>
       <tr class="success">
         <td class="title">Примечание</td>
         <td class="data">
-          <%= f.text_field :description %>
+          <%= f.text_area :description, row: 5, cols: 54 %>
         </td>
       </tr>
     </table>

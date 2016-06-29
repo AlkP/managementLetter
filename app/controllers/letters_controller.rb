@@ -48,14 +48,32 @@ class LettersController < ApplicationController
     end
   end
   def show
-    letter = Letter.find(params[:id])
+    @letter = Letter.find(params[:id])
+
+    @parent = Letter.find_by_letter_id(@letter.id)
+    @typeLetters = TypeLetter.where('direction = ?', @letter.type_letter.direction)
+    @cbMail = CbMail.all
+    @attacheds = Attached.where('letter_id = ?',params[:id])
+
     # attacheds = Attached.where('letter_id = ?', letter.id)
     # attacheds.each do |f|
     #   FileUtils.copy f.attached.path, f.letter.cb_mail.path_to_out
     # end
     # letter.state = 88
     # letter.save
-    LetterMailer.incoming_letter.deliver_now
+    # LetterMailer.incoming_letter.deliver_now
+    # redirect_to edit_letter_url(letter)
+  end
+  def sending
+    letter = Letter.find(params[:id])
+    if letter.type_letter.direction == 1
+      recipients = Recipient.where('email_enabled = ?', true)
+      recipients.each do |f|
+        incoming_letter('//10.3.222.61:3000'+letter_path)
+      end
+    else
+
+    end
     redirect_to edit_letter_url(letter)
   end
   def destroy

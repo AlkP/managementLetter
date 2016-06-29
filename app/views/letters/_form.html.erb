@@ -40,7 +40,7 @@
       <tr class="success" <% if @typeLetters.first.direction == 2 or !@letter.letter_id.nil? %>hidden="true"<% end %>>
         <td class="title">Досылка бумажного экземпляра</td>
         <td class="data">
-          <% if @typeLetters.first.direction == 1 and action_name = "new" %>
+          <% if @typeLetters.first.direction == 1 and action_name == "new" %>
             <%= select_tag('letter[after_mail]', options_for_select([["" , "0" ],
                                                                      ["досылка бумажного не будет" , "1" ],
                                                                      ["будет выслан бумажный вариант" , "2" ]],
@@ -63,7 +63,7 @@
         </td>
       </tr>
     </table>
-    <% unless @letter.state == 88 %>
+    <% unless @letter.state == 88 or action_name == "show" %>
       <div class="modal-footer">
         <%= f.submit 'Сохранить', :class => 'btn btn-primary btn-block btn-lg' %>
       </div>

@@ -1,0 +1,28 @@
+
+<%= form_for @recipient do |f| %>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr class="warning">
+        <td class="title">Включить рассылку?</td>
+        <td class="title"><%= f.check_box :email_enabled %></td>
+      </tr>
+      <tr class="success">
+        <td class="title">Тип адресата</td>
+        <td class="data"><%= select_tag('recipient[type]', options_for_select([["Рассылка о получении из ЦБ" , "1" ],
+                                                                               ["Админы почты ЦБ" , "7" ]], @recipient.type_recipient) )%></td>
+      </tr>
+      <tr class="success">
+        <td class="title">Имя</td>
+        <td class="data"><%= f.text_field :name, size: 55 %></td>
+      </tr>
+      <tr class="success">
+        <td class="title">Email</td>
+        <td class="data"><%= f.email_field :email, size: 55 %></td>
+      </tr>
+    </table>
+    <div class="modal-footer">
+      <%= f.submit 'Сохранить', :class => 'btn btn-primary btn-block btn-lg' %>
+    </div>
+  </div>
+<%end%>
+

@@ -1,4 +1,4 @@
-<%= link_to('Новый тип письма', new_type_letter_path, :class => 'btn btn-primary btn-block btn-lg')  %>
+<!--< %= link_to('Новый тип письма', new_type_letter_path, :class => 'btn btn-primary btn-block btn-lg')  %>-->
 
 <table class="table">
   <thead>
@@ -13,7 +13,8 @@
     <tr>
       <td class="data"><% if f.direction == 1 %>Входящий<% elsif f.direction == 2 %>Исходящий<% end %></td>
       <td class="data"><%= f.service_number  %></td>
-      <td class="data"><%= link_to(f.name, edit_type_letter_url(f)) %></td>
+      <!--<td class="data">< %= link_to(f.name, edit_type_letter_url(f)) %></td>-->
+      <td class="data"><%= f.name %></td>
     </tr>
   <% end %>
 

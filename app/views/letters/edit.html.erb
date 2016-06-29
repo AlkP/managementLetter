@@ -12,7 +12,7 @@
     <th class="title">
       <% unless @attacheds.first.nil? %>
         <% unless @letter.state == 88 %>
-          <a class="btn btn-success btn-block btn-lg" data-confirm="Действительно отправить пиьмо?" data-method="get" href="<%= letter_url %>">Отправить адресату</a>
+          <a class="btn btn-success btn-block btn-lg" data-confirm="Действительно отправить пиьмо?" data-method="get" href="send"><% if @letter.type_letter.direction == 1 %>Разослать уведомление<% else %>Отправить адресату<% end %></a>
         <% else %>
           <h3>Письмо отправлено</h3>
         <% end %>
