@@ -12,6 +12,6 @@ Rails.application.routes.draw do
       resources :cb_mails
     end
   end
-  get "/letters/:id/send" => "letter#sending"
+  get "/letters/:id/send" => "letters#sending"
   root 'letters#index'
 end

@@ -69,7 +69,7 @@ class LettersController < ApplicationController
     if letter.type_letter.direction == 1
       recipients = Recipient.where('email_enabled = ?', true)
       recipients.each do |f|
-        incoming_letter('//10.3.222.61:3000'+letter_path)
+        LetterMailer.incoming_letter('//10.3.222.61:3000'+letter_path)
       end
     else
 
