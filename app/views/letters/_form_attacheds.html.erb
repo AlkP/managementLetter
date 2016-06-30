@@ -12,7 +12,7 @@
         <% unless @letter.state == 88 or action_name == "show" %>
           <td><a data-confirm="Действительно удалить вложение?" data-method="delete" href="<%= attached_url(f) %>">Удалить</a></td>
         <% else %>
-          <td><%= link_to("Просмотр", f.attached.url) %></td>
+          <td><%= link_to "Просмотр", f.attached.url, remote: true %></td>
         <% end %>
       </tr>
     <% end %>

@@ -12,10 +12,10 @@
   <tbody>
   <% @recipients.each do |f| %>
       <tr>
-        <td><% if f.email_enabled %><img alt="in" src="/assets/in.png" /><% else %><img alt="out" src="/assets/out.png" /><% end %></td>
+        <td><% if f.email_enabled %><img width="16" alt="in" src="/assets/work.png" /><% else %><img width="16" alt="out" src="/assets/hand.jpg" /><% end %></td>
         <td><%= link_to(f.name, edit_recipient_url(f)) %></td>
         <td><%= f.email %></td>
-        <td class="data"><a data-confirm="Вы действительно хотите удалить получателя?" data-method="delete" href="<%= recipient_url(f) %>" rel="nofollow">удалить</a></td>
+        <td class="data"><a data-confirm="Вы действительно хотите удалить получателя?" data-method="delete" href="<%= recipient_url(f) %>" rel="nofollow"><img width="16" alt="out" src="/assets/del.jpg" /></a></td>
       </tr>
   <% end %>
 
