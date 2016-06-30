@@ -66,10 +66,11 @@ class LettersController < ApplicationController
   end
   def sending
     letter = Letter.find(params[:id])
+    attacheds = Attached.where('letter_id = ?', params[:id])
     if letter.type_letter.direction == 1
-      recipients = Recipient.where('email_enabled = ?', true)
+      recipients = Recipient.where('type_recipient = ? and email_enabled = ?', 1, true)
       recipients.each do |f|
-        LetterMailer.incoming_letter('//10.3.222.61:3000'+letter_path)
+        LetterMailer.incoming_letter(attacheds, '//10.3.222.61:3000'+letter_path, f.email).deliver_now
       end
     else
 

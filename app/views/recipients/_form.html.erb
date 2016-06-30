@@ -8,8 +8,9 @@
       </tr>
       <tr class="success">
         <td class="title">Тип адресата</td>
-        <td class="data"><%= select_tag('recipient[type]', options_for_select([["Рассылка о получении из ЦБ" , "1" ],
-                                                                               ["Админы почты ЦБ" , "7" ]], @recipient.type_recipient) )%></td>
+        <td class="data"><%= select_tag('recipient[type_recipient]', options_for_select([ ["Рассылка о получении из ЦБ" , 1 ],
+                                                                                          ["Админы почты ЦБ" , 7 ]],
+                                                                                        @recipient.type_recipient) )%></td>
       </tr>
       <tr class="success">
         <td class="title">Имя</td>
