@@ -1,6 +1,6 @@
 class LettersController < ApplicationController
   def index
-    @letters = Letter.all.order('date_letter DESC')
+    @letters = Letter.all.order('date_letter DESC').order('number2 DESC')
   end
   def new
     @letter = Letter.new
