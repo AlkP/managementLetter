@@ -1,7 +1,6 @@
 class LettersController < ApplicationController
   def index
-    @letters = Letter.all
-    @attacheds = Attached.all
+    @letters = Letter.all.order('date_letter DESC')
   end
   def new
     @letter = Letter.new
