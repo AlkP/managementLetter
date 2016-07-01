@@ -9,10 +9,12 @@
     <% @attacheds.each do |f| %>
       <tr>
         <td><%= f.attached.original_filename %></td>
+        <td><%= link_to image_tag('/assets/loupe.png', width: 16, onclick: 'window.open("'+f.attached.url+'", "newwindow", "width=800, height=1500, left=300, location=0"); return false'), "show" %></td>
         <% unless @letter.state == 88 or action_name == "show" %>
-          <td><a data-confirm="Действительно удалить вложение?" data-method="delete" href="<%= attached_url(f) %>">Удалить</a></td>
+          <td><%= link_to image_tag('/assets/del.jpg', width: 16), attached_url(f),
+                          :'data-method' => 'delete',
+                          :'data-confirm' => 'Действительно удалить вложение?' %></td>
         <% else %>
-          <td><%= link_to "Просмотр", f.attached.url, remote: true %></td>
         <% end %>
       </tr>
     <% end %>
@@ -22,5 +24,6 @@
 <% end %>
 
 <% unless @letter.state == 88 or action_name == "show" %>
-  <%= link_to('Добавить вложение', new_attached_path(@letter), :class => 'btn btn-info btn-block btn-lg')  %>
+  <div class="insertAttached"><%= link_to('Добавить вложение', new_attached_path(@letter), :class => 'btn btn-info btn-block btn-lg', remote: true) %></div>
 <% end %>
+

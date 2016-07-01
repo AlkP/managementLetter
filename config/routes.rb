@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   end
   resources :attacheds do
     resources :letters do
+      resources :letters do
+        resources :cb_mails
+      end
       resources :cb_mails
     end
   end

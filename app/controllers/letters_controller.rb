@@ -54,32 +54,36 @@ class LettersController < ApplicationController
     @typeLetters = TypeLetter.where('direction = ?', @letter.type_letter.direction)
     @cbMail = CbMail.all
     @attacheds = Attached.where('letter_id = ?',params[:id])
-
-    # attacheds = Attached.where('letter_id = ?', letter.id)
-    # attacheds.each do |f|
-    #   FileUtils.copy f.attached.path, f.letter.cb_mail.path_to_out
-    # end
-    # letter.state = 88
-    # letter.save
-    # LetterMailer.incoming_letter.deliver_now
-    # redirect_to edit_letter_url(letter)
   end
   def sending
     letter = Letter.find(params[:id])
     attacheds = Attached.where('letter_id = ?', params[:id])
+    error = false
     if letter.type_letter.direction == 1
       recipients = Recipient.where('type_recipient = ? and email_enabled = ?', 1, "t")
       recipients.each do |f|
-        LetterMailer.incoming_letter(attacheds, '//10.3.222.61:3000'+letter_path, f.email).deliver_now
+        # LetterMailer.incoming_letter(attacheds, '//10.3.222.61:3000'+letter_path, f.email).deliver_now
+        LetterMailer.incoming_letter(attacheds, request.base_url+letter_path, f.email).deliver_now
       end
+      error = true
     else
-
+      attacheds.each do |f|
+        FileUtils.copy f.attached.path, f.letter.letter.cb_mail.path_to_out
+      end
+      error = true
+    end
+    # Нужно доделать при отправке и копировании на ошибки
+    unless error
+      letter.state = 88
+      letter.save
     end
     redirect_to edit_letter_url(letter)
   end
   def destroy
     letter = Letter.find(params[:id])
+    attached = Attached.where('letter_id = ?', params[:id])
     letter.destroy
+    attached.destroy_all
     redirect_to letters_path
   end
   private

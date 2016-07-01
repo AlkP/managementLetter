@@ -8,7 +8,7 @@
 <table class="table">
   <tr>
     <th class="title"><%= render 'form' %></th>
-    <th class="title"><%= render 'form_attacheds' %></th>
+    <th class="title listAttached"><%= render 'form_attacheds' %></th>
     <th class="title">
       <% unless @attacheds.first.nil? %>
         <% unless @letter.state == 88 %>

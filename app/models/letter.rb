@@ -1,10 +1,15 @@
 class Letter < ActiveRecord::Base
   # has_many :letter, dependent: :restrict_with_exception
-  has_many :letter
+
   belongs_to :type_letter
   belongs_to :cb_mail
-  belongs_to :letter
+
   has_many :attached
+
+  # belongs_to :letter
+  # has_many :letter
+  belongs_to :letter
+  has_many :letters, :foreign_key => "letter_id"
 
   #scope :all(option=nil), -> { options ? where(type_letters: ) }
 
