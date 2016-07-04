@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'paperclip'
+gem 'docx_replace'
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'

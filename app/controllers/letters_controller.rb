@@ -12,6 +12,11 @@ class LettersController < ApplicationController
       @typeLetters = TypeLetter.where('direction = ?', 2)
       @letter.letter_id = params[:format]
       @letter.type_letter_id = 6
+      doc = DocxReplace::Doc.new("#{Rails.root}/lib/docx/template.docx", "#{Rails.root}/tmp")
+      doc.replace(/number_one/, "123qqqwe")
+      tmp_file = Tempfile.new('word_template.docx', "#{Rails.root}/tmp")
+      doc.commit(tmp_file.path)
+      send_file tmp_file.path
     end
     @cbMail = CbMail.all
     @letter.date_letter = Time.now
