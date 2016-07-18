@@ -1,0 +1,8 @@
+ru:
+  activerecord:
+    models:
+      letter: Письмо
+    attributes:
+      letter:
+        summary: "Краткое содержание"
+        date_letter: "Дата письма"

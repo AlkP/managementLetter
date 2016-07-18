@@ -4,8 +4,44 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+#one: {}
 # column: value
 #
-two: {}
+#two: {}
 #  column: value
+1:
+  direction: 1
+  service_number: 1
+  basis: true
+  name: "Письмо из ЦБ"
+2:
+  direction: 1
+  service_number: 2
+  basis: true
+  name: "Запрос из ЦБ"
+3:
+  direction: 1
+  service_number: 8
+  basis: true
+  name: "Письмо об обновлении ИТ продуктов"
+4:
+  direction: 1
+  service_number: 9
+  basis: true
+  name: "Копии приказов из ЦБ"
+5:
+  direction: 1
+  service_number: 51
+  basis: true
+  name: "Письмо в ЦБ"
+6:
+  direction: 1
+  service_number: 52
+  basis: true
+  name: "Ответ на письмо ЦБ"
+7:
+  direction: 1
+  service_number: 53
+  basis: true
+  name: "Курсы валют"
+

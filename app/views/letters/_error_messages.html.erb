@@ -1,0 +1,6 @@
+<% if @letter.errors.any? %>
+  <% @letter.errors.full_messages.each do |msg| %>
+    <!--<li>< %= msg %></li>-->
+    <h3 class="text-left text-danger"><%= msg %></h3>
+  <% end %>
+<% end %>

@@ -1,6 +1,7 @@
 
 <%= form_for @typeLetter do |f| %>
   <div class="modal-body">
+    <%= render 'error_messages' %>
     <table class="table table-striped">
       <tr class="warning">
         <td class="title">Направление письма</td>

@@ -2,7 +2,7 @@ class LettersController < ApplicationController
   def index
     @letters = Letter.all.order('date_letter DESC').order('number2 DESC')
   end
-  def new
+  def new_old
     @letter = Letter.new
     if params[:format] == '1'
       @typeLetters = TypeLetter.where('direction = ?', 1)
@@ -21,13 +21,34 @@ class LettersController < ApplicationController
     @cbMail = CbMail.all
     @letter.date_letter = Time.now
   end
+  def new
+    @letter = Letter.new
+    @typeLetters = TypeLetter.where('direction = ?', 1)
+    @cbMail = CbMail.all
+    @letter.date_letter = Time.now
+  end
+  def new_out
+    @letter = Letter.new
+    @typeLetters = TypeLetter.where('direction = ?', 2)
+    @cbMail = CbMail.all
+    @letter.date_letter = Time.now
+  end
+  def new_response
+    @letter = Letter.new
+    @letter.letter_id = params[:id]
+    @letter.type_letter_id = 6
+    @typeLetters = TypeLetter.where('direction = ?', 2)
+    @cbMail = CbMail.all
+    @letter.date_letter = Time.now
+  end
   def create
     letter = Letter.new(letter_params)
     if letter.save
+      flash[:ok] = "Созданно новое письмо"
       redirect_to edit_letter_url(letter)
     else
-      @letter = Letter.find(params[:id])
-      render "new"
+      flash[:error] = letter.errors.full_messages
+      redirect_to new_response_letter_path(params[:letter][:letter_id])
     end
   end
   def edit
@@ -43,11 +64,20 @@ class LettersController < ApplicationController
     @attacheds = Attached.where('letter_id = ?',params[:id])
   end
   def update
-    letter = Letter.find(params[:id])
-    if letter.update(letter_params)
-      redirect_to edit_letter_url(letter)
+    @letter = Letter.find(params[:id])
+    if @letter.update(letter_params)
+      flash[:success] = "Письмо обновленно"
+      redirect_to edit_letter_url(@letter)
     else
-      @letter = Letter.find(params[:id])
+      @letter.errors.full_messages
+      @parent = Letter.find_by_letter_id(@letter.id)
+      @answer = @parent.nil?
+      if @letter.type_letter.direction == 2 or @letter.required_answer == 1
+        @answer = false
+      end
+      @typeLetters = TypeLetter.where('direction = ?', @letter.type_letter.direction)
+      @cbMail = CbMail.all
+      @attacheds = Attached.where('letter_id = ?',params[:id])
       render "edit"
     end
   end
@@ -86,8 +116,16 @@ class LettersController < ApplicationController
   def destroy
     letter = Letter.find(params[:id])
     attached = Attached.where('letter_id = ?', params[:id])
-    letter.destroy
-    attached.destroy_all
+    msg = letter.number1+'/'+letter.number2
+    dte = letter.date_letter
+    begin
+      letter.destroy
+    rescue
+      flash[:error] = 'Письмо с номером №'+msg+' от '+dte.to_s+' не может быть удалено. Возможно у него есть связанные письма.'
+    else
+      attached.destroy_all
+      flash[:success] = 'Письмо с номером №'+msg+' от '+dte.to_s+', а также все вложения: удалены.'
+    end
     redirect_to letters_path
   end
   private

@@ -12,6 +12,11 @@
     <div class="row">
       <div class="col-md-12">
         <%= render 'layouts/menu' %>
+        <% flash.each do |key, value| %>
+          <h3 class="text-left <% if key == 'error' %>text-danger
+                              <% elsif key == 'success' %>text-success
+                              <% elsif key == 'ok' %>text-primary<% end %>"><%= value %></h3>
+        <% end %>
 
         <!--
         <div class="error">

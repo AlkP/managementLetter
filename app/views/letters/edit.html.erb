@@ -1,5 +1,6 @@
 <%= link_to('Назад к списку писем', letters_path, :class => 'btn btn-primary btn-lg')  %>
-<% if @answer %><%= link_to('Сформировать ответ', new_letter_path(@letter), :class => 'btn btn-danger btn-lg')  %><% end %>
+<% if @answer %><%= link_to 'Сформировать ответ', new_response_letter_path(@letter), :class => 'btn btn-success btn-lg'  %><% end %>
+<%= link_to 'Удалить письмо', @letter, method: :delete, data: { confirm: 'Вы действительно хотите удалить письмо?' }, :class => 'btn btn-danger btn-lg' %>
 
 <div class="modal-header">
   <h1><% if @typeLetters.first.direction == 1 %>Редактируем вх. письмо<% unless @parent.nil? %>. На него есть сформированный <%= link_to('ответ', edit_letter_url(@parent)) %><% end %><% elsif @letter.letter_id.nil? %>Редактируем  исх. письмо<% else %>Редактируем ответ на <%= link_to('письмо', edit_letter_url(@letter.letter_id)) %><% end %></h1>
@@ -12,7 +13,7 @@
     <th class="title">
       <% unless @attacheds.first.nil? %>
         <% unless @letter.state == 88 %>
-          <a class="btn btn-success btn-block btn-lg" data-confirm="Действительно отправить пиьмо?" data-method="get" href="send"><% if @letter.type_letter.direction == 1 %>Разослать уведомление<% else %>Отправить адресату<% end %></a>
+          <a class="btn btn-success btn-block btn-lg" data-confirm="Действительно отправить пиьмо?" data-method="get" href="<%= send_notice_letter_url %>"><% if @letter.type_letter.direction == 1 %>Разослать уведомление<% else %>Отправить адресату<% end %></a>
         <% else %>
           <h3>Письмо отправлено</h3>
         <% end %>

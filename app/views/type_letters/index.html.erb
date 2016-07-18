@@ -1,4 +1,4 @@
-<!--< %= link_to('Новый тип письма', new_type_letter_path, :class => 'btn btn-primary btn-block btn-lg')  %>-->
+<%= link_to('Новый тип письма', new_type_letter_path, :class => 'btn btn-primary btn-lg')  %>
 
 <table class="table">
   <thead>
@@ -6,6 +6,7 @@
     <th class="title">Направление</th>
     <th class="title">Сервисный номер</th>
     <th class="title">Имя</th>
+    <th class="title"></th>
   </tr>
   </thead>
   <tbody>
@@ -13,8 +14,9 @@
     <tr>
       <td class="data"><% if f.direction == 1 %>Входящий<% elsif f.direction == 2 %>Исходящий<% end %></td>
       <td class="data"><%= f.service_number  %></td>
-      <!--<td class="data">< %= link_to(f.name, edit_type_letter_url(f)) %></td>-->
-      <td class="data"><%= f.name %></td>
+      <td class="data"><%= link_to(f.name, edit_type_letter_url(f)) %></td>
+      <!--<td class="data">< %= f.name %></td>-->
+      <td><%= link_to image_tag('/assets/del.jpg', width: 16, alt: :out), type_letter_url(f), method: :delete, rel: :nofollow, data: { confirm: 'Вы действительно хотите удалить тип письма?' } %></td>
     </tr>
   <% end %>
 

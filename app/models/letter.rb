@@ -1,4 +1,7 @@
 class Letter < ActiveRecord::Base
+
+  validates :summary, :presence => true
+
   # has_many :letter, dependent: :restrict_with_exception
 
   belongs_to :type_letter
@@ -9,7 +12,7 @@ class Letter < ActiveRecord::Base
   # belongs_to :letter
   # has_many :letter
   belongs_to :letter
-  has_many :letters, :foreign_key => "letter_id"
+  has_many :letters, :foreign_key => "letter_id", dependent: :restrict_with_exception
 
   #scope :all(option=nil), -> { options ? where(type_letters: ) }
 

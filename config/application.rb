@@ -21,7 +21,12 @@ module ManagementLetter
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+
+    # Перключаемся на русский
+    config.i18n.default_locale = :ru
+
     config.active_record.raise_in_transactional_callbacks = true
+    # Разрешаем доступ к сайту запущенным на девелоп моде внутри нашей сети
     config.web_console.whitelisted_ips = '10.3.222.0/16'
   end
 end

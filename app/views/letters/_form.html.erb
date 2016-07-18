@@ -1,5 +1,7 @@
 <%= form_for @letter do |f| %>
+
   <div class="modal-body">
+    <%= render 'error_messages' %>
     <table class="table table-striped">
       <tr class="success" hidden="true">
         <td class="title">Родитель</td>

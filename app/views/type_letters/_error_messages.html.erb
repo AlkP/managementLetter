@@ -1,0 +1,5 @@
+<% if @typeLetter.errors.any? %>
+  <% @typeLetter.errors.full_messages.each do |msg| %>
+    <h3 class="text-left text-danger"><%= msg %></h3>
+  <% end %>
+<% end %>
