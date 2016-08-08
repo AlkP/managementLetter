@@ -27,6 +27,8 @@ module ManagementLetter
 
     config.active_record.raise_in_transactional_callbacks = true
     # Разрешаем доступ к сайту запущенным на девелоп моде внутри нашей сети
-    # config.web_console.whitelisted_ips = '10.3.222.0/16'
+    group :development, :test do
+      config.web_console.whitelisted_ips = '10.3.222.0/16'
+    end
   end
 end
