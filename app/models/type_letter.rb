@@ -2,8 +2,8 @@ class TypeLetter < ActiveRecord::Base
   has_many :letter
   validates :service_number, :name, presence: true, uniqueness: true
 
-  # before_save     :check_basis, :check_basis_false
-  # before_update   :check_basis, :check_basis_false
+  before_save     :check_basis, :check_basis_false
+  before_update   :check_basis, :check_basis_false
   before_destroy  :check_basis
 
   protected
