@@ -35,15 +35,31 @@ class LettersController < ApplicationController
   end
   def new_response
     @letter = Letter.new
+    @letter.date_letter = Time.now
     @letter.letter_id = params[:id]
     letter_in = Letter.find(params[:id])
     @letter_in__required_answer = letter_in.required_answer
     @letter.type_letter_id = (letter_in.required_answer == 4 ) ? @@ml_answer_id : @@ml_notice_id
     @letter.summary = "Ответ на письмо ЦБ от " + letter_in.date_letter.to_s + " №" + letter_in.number1 + "/" + letter_in.number2
+    if letter_in.required_answer == 2
+      if @letter.save
+        path= "tmp/answer.txt"
+        File.open(path, "w+") do |f|
+          f.write("Письмо №"+@letter.letter.number1+"/"+@letter.letter.number2+" от "+@letter.date_letter.to_s+"\r")
+          f.write("Получено АО ""ГЕНБАНК""\r")
+          f.write("-----\r")
+          f.write("-----\r")
+          f.write("исп. Пасенко А.В., телефон 550810\r")
+        end
+        att = Attached.new
+        att.letter_id = @letter.id
+        att.attached = File.open(path)
+        att.save
+        redirect_to edit_letter_path(@letter)
+      end
+    end
     @typeLetters = TypeLetter.where('direction = ?', 2)
-
     @cbMail = CbMail.all
-    @letter.date_letter = Time.now
   end
   def create
     letter = Letter.new(letter_params)
@@ -119,7 +135,7 @@ class LettersController < ApplicationController
   def destroy
     letter = Letter.find(params[:id])
     attached = Attached.where('letter_id = ?', params[:id])
-    msg = letter.number1+'/'+letter.number2
+    msg = (!letter.number1.nil? and !letter.number2.nil?) ? letter.number1+'/'+letter.number2 : ""
     dte = letter.date_letter
     begin
       letter.destroy
