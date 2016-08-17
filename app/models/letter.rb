@@ -1,6 +1,6 @@
 class Letter < ActiveRecord::Base
 
-  validates :summary, :presence => true
+  # validates :summary, :presence => true
 
   # has_many :letter, dependent: :restrict_with_exception
 

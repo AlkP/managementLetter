@@ -68,7 +68,7 @@ class LettersController < ApplicationController
       redirect_to edit_letter_url(letter)
     else
       flash[:error] = letter.errors.full_messages
-      redirect_to new_response_letter_path(params[:letter][:letter_id])
+      redirect_to new_letter_path(params[:letter][:letter_id])
     end
   end
   def edit
