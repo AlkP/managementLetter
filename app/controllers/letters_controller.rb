@@ -1,6 +1,6 @@
 class LettersController < ApplicationController
   def index
-    @letters = Letter.all.order('date_letter DESC').order('number2 DESC')
+    @letters = Letter.all.includes(:letter).includes(letter: [:cb_mail]).includes(:type_letter).includes(:cb_mail).order('date_letter DESC').order('number2 DESC')
   end
   def new_old
     @letter = Letter.new
@@ -57,9 +57,8 @@ class LettersController < ApplicationController
   end
   def edit
     @letter = Letter.find(params[:id])
-    # @direction = @letter.type_letter.direction.to_s
-    @parent = Letter.find_by_letter_id(@letter.id)
-    @answer = @parent.nil?
+    @child = Letter.find_by_letter_id(@letter.id)
+    @answer = @child.nil?
     if @letter.type_letter.direction == 2 or @letter.required_answer == 1
       @answer = false
     end
@@ -74,8 +73,8 @@ class LettersController < ApplicationController
       redirect_to edit_letter_url(@letter)
     else
       @letter.errors.full_messages
-      @parent = Letter.find_by_letter_id(@letter.id)
-      @answer = @parent.nil?
+      @child = Letter.find_by_letter_id(@letter.id)
+      @answer = @child.nil?
       if @letter.type_letter.direction == 2 or @letter.required_answer == 1
         @answer = false
       end
@@ -88,7 +87,7 @@ class LettersController < ApplicationController
   def show
     @letter = Letter.find(params[:id])
 
-    @parent = Letter.find_by_letter_id(@letter.id)
+    @child = Letter.find_by_letter_id(@letter.id)
     @typeLetters = TypeLetter.where('direction = ?', @letter.type_letter.direction)
     @cbMail = CbMail.all
     @attacheds = Attached.where('letter_id = ?',params[:id])
