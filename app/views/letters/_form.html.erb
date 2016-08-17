@@ -27,7 +27,7 @@
           <%= f.date_field :date_letter %>
         </td>
       </tr>
-      <tr class="success">
+      <tr class="success" <% if @letter_in__required_answer == 2 %>hidden="true"<% end %>>
         <td class="title">Номер письма</td>
         <td class="data">
           <%= f.text_field :number1, size: 9 %> / <%= f.text_field :number2, size: 4 %>
@@ -59,8 +59,9 @@
         <td class="title">Требуется ли ответ</td>
         <td class="data">
           <%= select_tag('letter[required_answer]', options_for_select([["ответ не требуется" , "1" ],
-                                                                        ["требуется ответ в электронном виде" , "2" ],
-                                                                        ["требуется ответ за подписью руководителя","3"]],
+                                                                        ["требуется уведомление в электронном виде" , "2" ],
+                                                                        ["требуется уведомление за подписью руководителя","3"],
+                                                                        ["требуется ответ","4"]],
                                                                        @letter.required_answer) )%>
         </td>
       </tr>

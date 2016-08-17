@@ -11,7 +11,8 @@ TypeLetter.create(direction: 1, service_number: 2,  basis: true,   name: "Зап
 TypeLetter.create(direction: 1, service_number: 8,  basis: true,   name: "Письмо об обновлении ИТ продуктов" );
 TypeLetter.create(direction: 1, service_number: 9,  basis: true,   name: "Копии приказов из ЦБ" );
 TypeLetter.create(direction: 2, service_number: 51, basis: true,   name: "Письмо в ЦБ" );
-TypeLetter.create(direction: 2, service_number: 52, basis: true,   name: "Ответ на письмо ЦБ" );
+TypeLetter.create(direction: 2, service_number: 52, basis: true,   name: "Уведомление на письмо ЦБ" );
+TypeLetter.create(direction: 2, service_number: 53, basis: true,   name: "Ответ на письмо ЦБ" );
 TypeLetter.create(direction: 2, service_number: 58, basis: true,   name: "Курсы валют" );
 
 CbMail.create(email: "35svc_svkkey@ext-gate.svk.krym.cbr.ru", path_to_out: "/home/alkp/post/35svc_svkkey");

@@ -1,5 +1,5 @@
 <%= link_to('Назад к списку писем', letters_path, :class => 'btn btn-primary btn-lg')  %>
-<% if @answer %><%= link_to 'Сформировать ответ', new_response_letter_path(@letter), :class => 'btn btn-success btn-lg'  %><% end %>
+<% if @answer %><%= link_to 'Сформировать уведомление/ответ', new_response_letter_path(@letter), :class => 'btn btn-success btn-lg'  %><% end %>
 <%= link_to 'Удалить письмо', @letter, method: :delete, data: { confirm: 'Вы действительно хотите удалить письмо?' }, :class => 'btn btn-danger btn-lg' %>
 
 <div class="modal-header">

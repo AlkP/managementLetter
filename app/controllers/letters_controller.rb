@@ -36,8 +36,12 @@ class LettersController < ApplicationController
   def new_response
     @letter = Letter.new
     @letter.letter_id = params[:id]
-    @letter.type_letter_id = 6
+    letter_in = Letter.find(params[:id])
+    @letter_in__required_answer = letter_in.required_answer
+    @letter.type_letter_id = (letter_in.required_answer == 4 ) ? @@ml_answer_id : @@ml_notice_id
+    @letter.summary = "Ответ на письмо ЦБ от " + letter_in.date_letter.to_s + " №" + letter_in.number1 + "/" + letter_in.number2
     @typeLetters = TypeLetter.where('direction = ?', 2)
+
     @cbMail = CbMail.all
     @letter.date_letter = Time.now
   end
