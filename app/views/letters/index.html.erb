@@ -18,9 +18,9 @@
       <tr>
         <td><% if f.type_letter.direction == 1 %><img alt="in" src="/assets/in.png" /><% else %><img alt="out" src="/assets/out.png" /><% end %></td>
         <td><%= f.type_letter.name %></td>
-        <td><%= link_to( f.number1+" / "+f.number2, edit_letter_url(f)) %></td>
+        <td><% if f.letter.nil? %><%= link_to( f.number1+" / "+f.number2, edit_letter_url(f)) %><% else %><%= f.letter.number1 %> / <%= f.letter.number2 %><% end%></td>
         <td><%= f.date_letter %></td>
-        <td class="data"><% unless f.cb_mail.nil? %><%= link_to( f.cb_mail.email, edit_letter_url(f)) %><% end %></td>
+        <td class="data"><% if f.letter.nil? %><% unless f.cb_mail.nil? %><%= link_to( f.cb_mail.email, edit_letter_url(f)) %><% end %><% else %><% unless f.letter.cb_mail.nil? %><%= f.letter.cb_mail.email %><% end %><% end %></td>
         <td class="data"><%= link_to( f.summary, edit_letter_url(f))  %></td>
         <td class="data">
           <%= link_to image_tag('/assets/del.jpg', width: 16, alt: :out), letter_url(f), method: :delete, rel: :nofollow, data: { confirm: 'Вы действительно хотите удалить письмо?' } %>

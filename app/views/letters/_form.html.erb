@@ -27,7 +27,7 @@
           <%= f.date_field :date_letter %>
         </td>
       </tr>
-      <tr class="success" <% if @letter_in__required_answer == 2 %>hidden="true"<% end %>>
+      <tr class="success" <% if !@letter.letter.nil? and @letter.letter.required_answer == 2 %>hidden="true"<% end %>>
         <td class="title">Номер письма</td>
         <td class="data">
           <%= f.text_field :number1, size: 9 %> / <%= f.text_field :number2, size: 4 %>
